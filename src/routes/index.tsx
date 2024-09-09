@@ -7,6 +7,7 @@ import { Fipe } from '../pages/FIPE';
 import { Feriados } from '../pages/BrasilAPI/Feriados';
 import { Cnpj } from '../pages/BrasilAPI/CNPJ';
 import { Corretoras } from '../pages/BrasilAPI/Corretoras';
+import { PopulacaoBrasil } from '../pages/IBGE/PopulacaoBrasil';
 
 export const router = createBrowserRouter([
   {
@@ -19,20 +20,34 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: '/brasilapi/cep',
-        element: <Cep></Cep>,
+        path: 'brasilapi',
+        children: [
+          {
+            path: 'cep',
+            element: <Cep></Cep>,
+          },
+          {
+            path: 'cnpj',
+            element: <Cnpj></Cnpj>,
+          },
+          {
+            path: 'feriados',
+            element: <Feriados></Feriados>,
+          },
+          {
+            path: 'corretoras',
+            element: <Corretoras></Corretoras>,
+          },
+        ],
       },
       {
-        path: '/brasilapi/cnpj',
-        element: <Cnpj></Cnpj>,
-      },
-      {
-        path: '/brasilapi/feriados',
-        element: <Feriados></Feriados>,
-      },
-      {
-        path: '/brasilapi/corretoras',
-        element: <Corretoras></Corretoras>,
+        path: 'ibge',
+        children: [
+          {
+            path: 'populacao-brasil',
+            element: <PopulacaoBrasil></PopulacaoBrasil>,
+          },
+        ],
       },
       {
         path: '/fipe',

@@ -1,5 +1,6 @@
 import { MenuDataItem } from '@ant-design/pro-components';
-import { HomeOutlined, ApiOutlined, CarOutlined } from '@ant-design/icons';
+import Icon, { HomeOutlined, ApiOutlined, CarOutlined } from '@ant-design/icons';
+import { BrazilSVG } from '../assets/icons';
 
 export const menu: MenuDataItem[] = [
   {
@@ -27,6 +28,17 @@ export const menu: MenuDataItem[] = [
       {
         path: 'corretoras',
         name: 'Corretoras',
+      },
+    ],
+  },
+  {
+    path: '/ibge',
+    name: 'IBGE',
+    icon: <Icon component={BrazilSVG} style={{ height: '1em', width: '1em' }} />,
+    children: [
+      {
+        path: 'populacao-brasil',
+        name: 'População no Brasil',
       },
     ],
   },
