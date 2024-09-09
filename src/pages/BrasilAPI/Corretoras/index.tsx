@@ -8,12 +8,15 @@ import React, { useEffect, useState } from 'react';
 import { Corretora } from './interfaces';
 import { formatCnpjCpf } from '../../../helpers/string.helper';
 import dayjs from 'dayjs';
-import { SortOrder } from 'antd/es/table/interface';
+import { ModalCorretora } from './components/modal';
+import useModal from '../../../hooks/useModal';
+import { CorretoraModalData } from './components/modal/interfaces';
 
 export const Corretoras: React.FC = () => {
   const [message, contextHolder] = useMessage();
   const [loading, setLoading] = useBoolean(false);
   const [data, setData] = useState<Corretora[] | undefined>();
+  const { isOpen, data: modalData, handleClose, handleOpen } = useModal<CorretoraModalData>();
 
   const fetchData = () => {
     setLoading.setTrue();
@@ -55,12 +58,12 @@ export const Corretoras: React.FC = () => {
     return '';
   };
 
-  const getActions = (record: Corretora): MenuProps['items'] => {
+  const getActions = (row: Corretora): MenuProps['items'] => {
     return [
       {
         key: 'visualizar',
         label: 'Visualizar',
-        onClick: () => console.log(record.cnpj),
+        onClick: () => handleOpen({ cnpj: row.cnpj, nome: row.nome_comercial || row.nome_social }),
       },
     ];
   };
@@ -132,6 +135,7 @@ export const Corretoras: React.FC = () => {
 
   return (
     <>
+      <ModalCorretora isOpen={isOpen} onModalClose={handleClose} data={modalData}></ModalCorretora>
       {contextHolder}
       <Table
         bordered

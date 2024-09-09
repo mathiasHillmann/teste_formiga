@@ -9,7 +9,7 @@ export const BaseLayout: React.FC = () => {
   return (
     <ProLayout
       style={{
-        height: '100vh',
+        height: 'calc(100vh - 5em)',
       }}
       fixSiderbar
       location={{ pathname: location.pathname }}
