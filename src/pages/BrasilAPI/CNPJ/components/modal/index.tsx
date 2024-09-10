@@ -1,13 +1,7 @@
 import { Modal } from 'antd';
 import { CnpjModalProps } from './interfaces';
-import { useEffect } from 'react';
 
 export const ModalCnpj: React.FC<CnpjModalProps> = ({ isOpen, data, onModalClose }: CnpjModalProps) => {
-  useEffect(() => {
-    if (isOpen) {
-    }
-  }, [isOpen]);
-
   return (
     <Modal
       title="Dados CNPJ"
