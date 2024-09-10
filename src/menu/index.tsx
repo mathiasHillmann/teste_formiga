@@ -1,6 +1,6 @@
 import { MenuDataItem } from '@ant-design/pro-components';
 import Icon, { HomeOutlined, ApiOutlined, CarOutlined } from '@ant-design/icons';
-import { BrazilSVG } from '../assets/icons';
+import { BrazilSVG, CatSVG } from '../assets/icons';
 
 export const menu: MenuDataItem[] = [
   {
@@ -50,5 +50,10 @@ export const menu: MenuDataItem[] = [
     path: '/fipe',
     name: 'FIPE',
     icon: <CarOutlined></CarOutlined>,
+  },
+  {
+    path: '/cataas',
+    name: 'Cat as a service',
+    icon: <Icon component={CatSVG} style={{ height: '1em', width: '1em' }} />,
   },
 ];

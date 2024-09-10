@@ -9,6 +9,7 @@ import { Cnpj } from '../pages/BrasilAPI/CNPJ';
 import { Corretoras } from '../pages/BrasilAPI/Corretoras';
 import { PopulacaoBrasil } from '../pages/IBGE/PopulacaoBrasil';
 import { PIB } from '../pages/IBGE/PIB';
+import { CatAAS } from '../pages/CatAAS';
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: '/fipe',
         element: <Fipe></Fipe>,
+      },
+      {
+        path: '/cataas',
+        element: <CatAAS></CatAAS>,
       },
     ],
   },
