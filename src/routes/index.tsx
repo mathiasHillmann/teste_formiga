@@ -8,6 +8,7 @@ import { Feriados } from '../pages/BrasilAPI/Feriados';
 import { Cnpj } from '../pages/BrasilAPI/CNPJ';
 import { Corretoras } from '../pages/BrasilAPI/Corretoras';
 import { PopulacaoBrasil } from '../pages/IBGE/PopulacaoBrasil';
+import { PIB } from '../pages/IBGE/PIB';
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
           {
             path: 'populacao-brasil',
             element: <PopulacaoBrasil></PopulacaoBrasil>,
+          },
+          {
+            path: 'pib',
+            element: <PIB></PIB>,
           },
         ],
       },

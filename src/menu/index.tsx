@@ -40,6 +40,10 @@ export const menu: MenuDataItem[] = [
         path: 'populacao-brasil',
         name: 'População no Brasil',
       },
+      {
+        path: 'pib',
+        name: 'PIB',
+      },
     ],
   },
   {

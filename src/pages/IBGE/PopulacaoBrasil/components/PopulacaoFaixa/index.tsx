@@ -1,6 +1,6 @@
 import { useRequest } from 'ahooks';
 import { PopulacaoFaixaProps } from './interfaces';
-import { GraphSerie, IBGEData } from '../../interfaces';
+import { GraphSerie, IBGEData } from '../../../interfaces';
 import axios from 'axios';
 import { Card, Empty } from 'antd';
 import { Line } from '@ant-design/charts';
@@ -39,13 +39,13 @@ export const PopulacaoFaixa: React.FC<PopulacaoFaixaProps> = ({ route, title }: 
           {
             field: 'value',
             name: 'População',
-            valueFormatter: '~s',
+            valueFormatter: '.2s',
           },
         ],
       },
       axis: {
         y: {
-          labelFormatter: '~s',
+          labelFormatter: '.2s',
         },
       },
     };

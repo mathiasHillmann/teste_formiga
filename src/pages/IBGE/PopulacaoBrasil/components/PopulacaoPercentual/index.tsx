@@ -3,7 +3,7 @@ import { useRequest } from 'ahooks';
 import { Card, Empty } from 'antd';
 import axios from 'axios';
 import { AntLineConfig } from '../../../../../types/types';
-import { GraphSerie, IBGEData } from '../../interfaces';
+import { GraphSerie, IBGEData } from '../../../interfaces';
 
 export const PopulacaoPercentual: React.FC = () => {
   const { data: data, loading: loading } = useRequest(() => {

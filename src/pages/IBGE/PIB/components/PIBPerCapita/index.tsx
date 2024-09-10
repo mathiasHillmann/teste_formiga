@@ -1,25 +1,31 @@
 import { Line } from '@ant-design/charts';
 import { useRequest } from 'ahooks';
-import { Card, Empty } from 'antd';
 import axios from 'axios';
 import { AntLineConfig } from '../../../../../types/types';
 import { GraphSerie, IBGEData } from '../../../interfaces';
+import { Card, Empty } from 'antd';
 
-export const PopulacaoTotal: React.FC = () => {
+export const PIBPerCapita: React.FC = () => {
   const { data: data, loading: loading } = useRequest(() => {
     return axios.get<IBGEData[]>(
       `${
         import.meta.env.VITE_IBGE_URL
-      }/agregados/1209/periodos/-6/variaveis/606?localidades=N1[all]&classificacao=58[0]`,
+      }/agregados/6784/periodos/1996|1997|1998|1999|2000|2001|2002|2003|2004|2005|2006|2007|2008|2009|2010|2011|2012|2013|2014|2015|2016|2017|2018|2019|2020|2021/variaveis/9812?localidades=N1[all]`,
     );
   });
 
   const getGraphConfig = (data: IBGEData[]): AntLineConfig => {
-    const graphData: GraphSerie[] = Object.entries(data[0].resultados[0].series[0].serie).map(([key, value]) => ({
-      year: key,
-      value: Number(value),
-      category: 'Todos',
-    }));
+    let graphData: GraphSerie[] = [];
+
+    data[0].resultados.forEach((resultado) => {
+      graphData.push(
+        ...Object.entries(resultado.series[0].serie).map(([key, value]: [string, string]) => ({
+          year: key,
+          value: Number(value),
+          category: 'PIB per capita',
+        })),
+      );
+    });
 
     return {
       data: graphData,
@@ -47,7 +53,7 @@ export const PopulacaoTotal: React.FC = () => {
   };
 
   return (
-    <Card title="Grupos de idade - Todos" style={{ width: '100%' }} loading={loading}>
+    <Card title="PIB - Per capita" style={{ width: '100%' }} loading={loading}>
       {data ? <Line {...getGraphConfig(data?.data)} /> : <Empty></Empty>}
     </Card>
   );
