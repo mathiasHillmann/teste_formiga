@@ -46,13 +46,13 @@ export const PopulacaoPercentual: React.FC = () => {
           {
             field: 'value',
             name: 'População (%)',
-            valueFormatter: '~s',
+            valueFormatter: '.2f',
           },
         ],
       },
       axis: {
         y: {
-          labelFormatter: '~s',
+          labelFormatter: '.2f',
         },
       },
     };
