@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { CatAASParams } from './interfaces';
 import { randomInteger } from '../../helpers/number.helper';
 import axios from 'axios';
+import { BaseOptionType } from 'antd/es/select';
 
 export const CatAAS: React.FC = () => {
   const defaultUrl: string = `${import.meta.env.VITE_CATAAS_URL}/cat`;
@@ -72,14 +73,14 @@ export const CatAAS: React.FC = () => {
     },
   );
 
-  const imageSizeOptions = [
+  const imageSizeOptions: BaseOptionType[] = [
     { label: 'Muito pequeno', value: 'xsmall' },
     { label: 'Pequeno', value: 'small' },
     { label: 'Médio', value: 'medium' },
     { label: 'Quadrado', value: 'square' },
   ];
 
-  const catColorOptions = [
+  const catColorOptions: BaseOptionType[] = [
     { label: 'Branco', value: 'white' },
     { label: 'Cinza', value: 'grey' },
     { label: 'Preto', value: 'black' },
@@ -87,7 +88,7 @@ export const CatAAS: React.FC = () => {
     { label: 'Laranja', value: 'orange' },
   ];
 
-  const fontColorOptions = [
+  const fontColorOptions: BaseOptionType[] = [
     { label: 'Branco', value: 'white' },
     { label: 'Cinza', value: 'grey' },
     { label: 'Preto', value: 'black' },
