@@ -50,25 +50,21 @@ export const CurrencyConversion: React.FC = () => {
       .finally(() => setOptionsLoading.setFalse());
   };
 
-  useEffect(() => {
-    fetchOptions();
-  }, []);
-
-  const onFinish = (formValues: CurrencyConversionForm) => {
+  const fetchConvertedValue = () => {
     setLoading.setTrue();
 
-    const queryDate = formValues.conversionDate.format('YYYY-MM-DD');
+    const queryDate = form.getFieldValue('conversionDate').format('YYYY-MM-DD');
 
     const queryParams = new URLSearchParams({
-      amount: formValues.fromValue as unknown as string,
-      from: formValues.fromCurrency,
-      to: formValues.toCurrency,
+      amount: form.getFieldValue('fromValue') as unknown as string,
+      from: form.getFieldValue('fromCurrency'),
+      to: form.getFieldValue('toCurrency'),
     }).toString();
 
     axios
       .get(`${import.meta.env.VITE_FRANKFURTER_URL}/${queryDate}?${queryParams}`)
       .then((response: AxiosResponse<CurrencyConversionResponse>) => {
-        setConvertedValue(`${Object.values(response?.data.rates)[0]} ${formValues.toCurrency}`);
+        setConvertedValue(`${Object.values(response?.data.rates)[0]} ${form.getFieldValue('toCurrency')}`);
       })
       .catch((error: AxiosError) => {
         console.error(error);
@@ -88,6 +84,15 @@ export const CurrencyConversion: React.FC = () => {
       .finally(() => setLoading.setFalse());
   };
 
+  useEffect(() => {
+    fetchOptions();
+    fetchConvertedValue();
+  }, []);
+
+  const onFinish = () => {
+    fetchConvertedValue();
+  };
+
   return (
     <>
       {contextHolder}
@@ -98,7 +103,7 @@ export const CurrencyConversion: React.FC = () => {
               layout="vertical"
               form={form}
               onFinish={onFinish}
-              initialValues={{ fromCurrency: 'BRL', toCurrency: 'USD', conversionDate: dayjs() }}
+              initialValues={{ fromCurrency: 'USD', toCurrency: 'BRL', fromValue: 1, conversionDate: dayjs() }}
             >
               <Form.Item<CurrencyConversionForm>
                 name="fromCurrency"
