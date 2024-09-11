@@ -4,4 +4,5 @@ export interface CatAASParams {
   text: string;
   fontSize: number;
   fontColor: string;
+  type: 'xsmall' | 'small' | 'medium' | 'square';
 }
