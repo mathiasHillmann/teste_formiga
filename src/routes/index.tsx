@@ -12,6 +12,7 @@ import { CatAAS } from '../pages/CatAAS';
 import { Brokers } from '../pages/BrasilAPI/Brokers';
 import { CurrencyConversion } from '../pages/Frankfurter/CurrencyConversion';
 import { CurrencyValueHistory } from '../pages/Frankfurter/CurrencyValueHistory';
+import { MyIp } from '../pages/MyIp';
 
 export const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ export const router = createBrowserRouter([
       {
         path: '/cataas',
         element: <CatAAS />,
+      },
+      {
+        path: '/meu-ip',
+        element: <MyIp />,
       },
     ],
   },

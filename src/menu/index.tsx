@@ -1,5 +1,5 @@
 import { MenuDataItem } from '@ant-design/pro-components';
-import Icon, { HomeOutlined, ApiOutlined, CarOutlined, DollarOutlined } from '@ant-design/icons';
+import Icon, { HomeOutlined, ApiOutlined, CarOutlined, DollarOutlined, NodeIndexOutlined } from '@ant-design/icons';
 import { BrazilSVG, CatSVG } from '../assets/icons';
 
 export const menu: MenuDataItem[] = [
@@ -70,5 +70,10 @@ export const menu: MenuDataItem[] = [
     path: '/cataas',
     name: 'Cat as a service',
     icon: <Icon component={CatSVG} style={{ height: '1em', width: '1em' }} />,
+  },
+  {
+    path: '/meu-ip',
+    name: 'Meu IP',
+    icon: <NodeIndexOutlined />,
   },
 ];
