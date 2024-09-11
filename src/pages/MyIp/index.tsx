@@ -4,6 +4,7 @@ import React from 'react';
 import { CloudflareIpResponse } from './interfaces';
 import { useRequest } from 'ahooks';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
 
 export const MyIp: React.FC = () => {
   const { data, loading, error } = useRequest(() => {
