@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { Holyday, HolydayErrorResponse } from './interfaces';
 import './styles.scss';
 
-export const Feriados = () => {
+export const Holydays = () => {
   const [message, contextHolder] = useMessage();
   const [data, setData] = useState<Holyday[] | null>(null);
   const [year, setYear] = useState<number>(dayjs().year());

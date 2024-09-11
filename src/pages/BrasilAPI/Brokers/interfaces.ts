@@ -1,4 +1,4 @@
-export interface Corretora {
+export interface Broker {
   cnpj: string;
   type: string;
   nome_social: string;

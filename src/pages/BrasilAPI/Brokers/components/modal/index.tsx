@@ -1,20 +1,20 @@
 import { Descriptions, Divider, Empty, Modal, Skeleton } from 'antd';
 import { useEffect, useState } from 'react';
-import { CorretoraModalProps } from './interfaces';
 import { useBoolean } from 'ahooks';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { Corretora } from '../../interfaces';
+import { Broker } from '../../interfaces';
 import useMessage from 'antd/es/message/useMessage';
 import { formatCnpjCpf } from '../../../../../helpers/string.helper';
 import dayjs from 'dayjs';
+import { BrokerModalProps } from './interfaces';
 
-export const ModalCorretora: React.FC<CorretoraModalProps> = ({
+export const BrokerModal: React.FC<BrokerModalProps> = ({
   isOpen,
   data: modalData,
   onModalClose,
-}: CorretoraModalProps) => {
+}: BrokerModalProps) => {
   const [loading, setLoading] = useBoolean(false);
-  const [data, setData] = useState<Corretora | null>(null);
+  const [data, setData] = useState<Broker | null>(null);
   const [message, contextHolder] = useMessage();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const ModalCorretora: React.FC<CorretoraModalProps> = ({
 
     axios
       .get(`${import.meta.env.VITE_BRASILAPI_URL}/cvm/corretoras/v1/${modalData?.cnpj}`)
-      .then((response: AxiosResponse<Corretora>) => {
+      .then((response: AxiosResponse<Broker>) => {
         setData(response.data);
       })
       .catch((error: AxiosError) => {

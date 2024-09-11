@@ -4,41 +4,51 @@ import { Home } from '../pages/Home';
 import { Redirect } from './components/redirect';
 import { Cep } from '../pages/BrasilAPI/CEP';
 import { Fipe } from '../pages/FIPE';
-import { Feriados } from '../pages/BrasilAPI/Feriados';
+import { Holydays } from '../pages/BrasilAPI/Holydays';
 import { Cnpj } from '../pages/BrasilAPI/CNPJ';
-import { Corretoras } from '../pages/BrasilAPI/Corretoras';
 import { PopulacaoBrasil } from '../pages/IBGE/PopulacaoBrasil';
 import { PIB } from '../pages/IBGE/PIB';
 import { CatAAS } from '../pages/CatAAS';
+import { Brokers } from '../pages/BrasilAPI/Brokers';
+import { CurrencyConversion } from '../pages/Frankfurter/CurrencyConversion';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <BaseLayout></BaseLayout>,
-    errorElement: <Redirect></Redirect>,
+    element: <BaseLayout />,
+    errorElement: <Redirect />,
     children: [
       {
         path: '/',
-        element: <Home></Home>,
+        element: <Home />,
       },
       {
         path: 'brasilapi',
         children: [
           {
             path: 'cep',
-            element: <Cep></Cep>,
+            element: <Cep />,
           },
           {
             path: 'cnpj',
-            element: <Cnpj></Cnpj>,
+            element: <Cnpj />,
           },
           {
             path: 'feriados',
-            element: <Feriados></Feriados>,
+            element: <Holydays />,
           },
           {
             path: 'corretoras',
-            element: <Corretoras></Corretoras>,
+            element: <Brokers />,
+          },
+        ],
+      },
+      {
+        path: 'frankfurter',
+        children: [
+          {
+            path: 'conversao-dinheiro',
+            element: <CurrencyConversion />,
           },
         ],
       },
@@ -47,21 +57,21 @@ export const router = createBrowserRouter([
         children: [
           {
             path: 'populacao-brasil',
-            element: <PopulacaoBrasil></PopulacaoBrasil>,
+            element: <PopulacaoBrasil />,
           },
           {
             path: 'pib',
-            element: <PIB></PIB>,
+            element: <PIB />,
           },
         ],
       },
       {
         path: '/fipe',
-        element: <Fipe></Fipe>,
+        element: <Fipe />,
       },
       {
         path: '/cataas',
-        element: <CatAAS></CatAAS>,
+        element: <CatAAS />,
       },
     ],
   },

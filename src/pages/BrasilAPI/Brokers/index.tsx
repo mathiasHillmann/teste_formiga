@@ -5,25 +5,25 @@ import useMessage from 'antd/es/message/useMessage';
 import { TableProps } from 'antd/lib';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Corretora } from './interfaces';
+import { Broker } from './interfaces';
 import { formatCnpjCpf } from '../../../helpers/string.helper';
 import dayjs from 'dayjs';
-import { ModalCorretora } from './components/modal';
 import useModal from '../../../hooks/useModal';
-import { CorretoraModalData } from './components/modal/interfaces';
+import { BrokerModal } from './components/modal';
+import { BrokerModalData } from './components/modal/interfaces';
 
-export const Corretoras: React.FC = () => {
+export const Brokers: React.FC = () => {
   const [message, contextHolder] = useMessage();
   const [loading, setLoading] = useBoolean(false);
-  const [data, setData] = useState<Corretora[] | undefined>();
-  const { isOpen, data: modalData, handleClose, handleOpen } = useModal<CorretoraModalData>();
+  const [data, setData] = useState<Broker[] | undefined>();
+  const { isOpen, data: modalData, handleClose, handleOpen } = useModal<BrokerModalData>();
 
   const fetchData = () => {
     setLoading.setTrue();
 
     axios
       .get(`${import.meta.env.VITE_BRASILAPI_URL}/cvm/corretoras/v1`)
-      .then((response: AxiosResponse<Corretora[]>) => {
+      .then((response: AxiosResponse<Broker[]>) => {
         setData(response.data);
       })
       .catch((error: AxiosError) => {
@@ -58,7 +58,7 @@ export const Corretoras: React.FC = () => {
     return '';
   };
 
-  const getActions = (row: Corretora): MenuProps['items'] => {
+  const getActions = (row: Broker): MenuProps['items'] => {
     return [
       {
         key: 'visualizar',
@@ -68,20 +68,20 @@ export const Corretoras: React.FC = () => {
     ];
   };
 
-  const columns: TableProps<Corretora>['columns'] = [
+  const columns: TableProps<Broker>['columns'] = [
     {
       title: 'Código',
       dataIndex: 'codigo_cvm',
       key: 'codigo_cvm',
       width: '7em',
-      sorter: (a: Corretora, b: Corretora): number => Number(a.codigo_cvm) - Number(b.codigo_cvm),
+      sorter: (a: Broker, b: Broker): number => Number(a.codigo_cvm) - Number(b.codigo_cvm),
     },
     {
       title: 'CNPJ',
       dataIndex: 'cnpj',
       key: 'cnpj',
       width: '12em',
-      sorter: (a: Corretora, b: Corretora): number => a.cnpj.localeCompare(b.cnpj),
+      sorter: (a: Broker, b: Broker): number => a.cnpj.localeCompare(b.cnpj),
       render: (text) => <Typography.Text>{formatCnpjCpf(text)}</Typography.Text>,
     },
     {
@@ -89,7 +89,7 @@ export const Corretoras: React.FC = () => {
       dataIndex: 'nome',
       key: 'nome',
       defaultSortOrder: 'ascend',
-      sorter: (a: Corretora, b: Corretora): number => a.nome_comercial.localeCompare(b.nome_comercial),
+      sorter: (a: Broker, b: Broker): number => a.nome_comercial.localeCompare(b.nome_comercial),
       render: (_, row) => <Typography.Text>{row.nome_comercial || row.nome_social}</Typography.Text>,
     },
     {
@@ -97,7 +97,7 @@ export const Corretoras: React.FC = () => {
       dataIndex: 'status',
       key: 'status',
       width: '18em',
-      sorter: (a: Corretora, b: Corretora): number => a.status.localeCompare(b.status),
+      sorter: (a: Broker, b: Broker): number => a.status.localeCompare(b.status),
       render: (text) => <Tag color={statusColor(text)}>{text}</Tag>,
     },
     {
@@ -105,7 +105,7 @@ export const Corretoras: React.FC = () => {
       dataIndex: 'data_registro',
       key: 'data_registro',
       width: '9em',
-      sorter: (a: Corretora, b: Corretora): number => a.data_registro.localeCompare(b.data_registro),
+      sorter: (a: Broker, b: Broker): number => a.data_registro.localeCompare(b.data_registro),
       render: (text) => <Typography.Text>{dayjs(text).format('DD/MM/YYYY') || 'Sem dados'}</Typography.Text>,
     },
     {
@@ -113,7 +113,7 @@ export const Corretoras: React.FC = () => {
       dataIndex: 'data_inicio_situacao',
       key: 'data_inicio_situacao',
       width: '9em',
-      sorter: (a: Corretora, b: Corretora): number => a.data_inicio_situacao.localeCompare(b.data_inicio_situacao),
+      sorter: (a: Broker, b: Broker): number => a.data_inicio_situacao.localeCompare(b.data_inicio_situacao),
       render: (text) => <Typography.Text>{dayjs(text).format('DD/MM/YYYY') || 'Sem dados'}</Typography.Text>,
     },
     {
@@ -135,7 +135,7 @@ export const Corretoras: React.FC = () => {
 
   return (
     <>
-      <ModalCorretora isOpen={isOpen} onModalClose={handleClose} data={modalData}></ModalCorretora>
+      <BrokerModal isOpen={isOpen} onModalClose={handleClose} data={modalData}></BrokerModal>
       {contextHolder}
       <Table
         bordered

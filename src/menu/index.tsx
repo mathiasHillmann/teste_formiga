@@ -1,17 +1,17 @@
 import { MenuDataItem } from '@ant-design/pro-components';
-import Icon, { HomeOutlined, ApiOutlined, CarOutlined } from '@ant-design/icons';
+import Icon, { HomeOutlined, ApiOutlined, CarOutlined, DollarOutlined } from '@ant-design/icons';
 import { BrazilSVG, CatSVG } from '../assets/icons';
 
 export const menu: MenuDataItem[] = [
   {
     path: '/',
     name: 'Início',
-    icon: <HomeOutlined></HomeOutlined>,
+    icon: <HomeOutlined />,
   },
   {
     path: '/brasilapi',
     name: 'BrasilAPI',
-    icon: <ApiOutlined></ApiOutlined>,
+    icon: <ApiOutlined />,
     children: [
       {
         path: 'cep',
@@ -47,9 +47,20 @@ export const menu: MenuDataItem[] = [
     ],
   },
   {
+    path: '/frankfurter',
+    name: 'Frankfurter',
+    icon: <DollarOutlined />,
+    children: [
+      {
+        path: 'conversao-dinheiro',
+        name: 'Conversão de dinheiro',
+      },
+    ],
+  },
+  {
     path: '/fipe',
     name: 'FIPE',
-    icon: <CarOutlined></CarOutlined>,
+    icon: <CarOutlined />,
   },
   {
     path: '/cataas',
