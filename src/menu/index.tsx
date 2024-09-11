@@ -55,6 +55,10 @@ export const menu: MenuDataItem[] = [
         path: 'conversao-dinheiro',
         name: 'Conversão de dinheiro',
       },
+      {
+        path: 'historico-taxa-cambio',
+        name: 'Histórico de taxa de câmbio',
+      },
     ],
   },
   {

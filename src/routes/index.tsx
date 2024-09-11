@@ -11,6 +11,7 @@ import { PIB } from '../pages/IBGE/PIB';
 import { CatAAS } from '../pages/CatAAS';
 import { Brokers } from '../pages/BrasilAPI/Brokers';
 import { CurrencyConversion } from '../pages/Frankfurter/CurrencyConversion';
+import { CurrencyValueHistory } from '../pages/Frankfurter/CurrencyValueHistory';
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
           {
             path: 'conversao-dinheiro',
             element: <CurrencyConversion />,
+          },
+          {
+            path: 'historico-taxa-cambio',
+            element: <CurrencyValueHistory />,
           },
         ],
       },

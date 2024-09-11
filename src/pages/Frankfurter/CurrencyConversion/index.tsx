@@ -1,22 +1,19 @@
 import { useBoolean } from 'ahooks';
 import { Button, Card, Col, DatePicker, Form, InputNumber, Row, Space } from 'antd';
-import { useForm } from 'antd/es/form/Form';
-import useMessage from 'antd/es/message/useMessage';
-import { BaseOptionType } from 'antd/es/select';
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import React, { useEffect, useState } from 'react';
-import { CurrencyConversionForm, CurrencyConversionResponse } from './interfaces';
-import { Select } from 'antd/lib';
 import { Rule } from 'antd/es/form';
+import { useForm } from 'antd/es/form/Form';
+import { Select } from 'antd/lib';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
+import React, { useEffect, useState } from 'react';
+import { useCurrencyOptions } from '../useCurrencyOptions';
+import { CurrencyConversionForm, CurrencyConversionResponse } from './interfaces';
 
 export const CurrencyConversion: React.FC = () => {
   const [form] = useForm();
-  const [message, contextHolder] = useMessage();
-  const [optionsLoading, setOptionsLoading] = useBoolean(false);
   const [loading, setLoading] = useBoolean(false);
-  const [currencyOptions, setCurrencyOptions] = useState<BaseOptionType[] | undefined>();
   const [convertedValue, setConvertedValue] = useState<string>();
+  const { fetchOptions, optionsLoading, currencyOptions, contextHolder, message } = useCurrencyOptions();
 
   const earliestConversionDate = dayjs('1999-01-04');
 
@@ -25,29 +22,6 @@ export const CurrencyConversion: React.FC = () => {
     fromValue: [{ required: true, message: 'Obrigatório' }],
     toCurrency: [{ required: true, message: 'Obrigatório' }],
     conversionDate: [{ required: true, message: 'Obrigatório' }],
-  };
-
-  const fetchOptions = () => {
-    setOptionsLoading.setTrue();
-
-    axios
-      .get(`${import.meta.env.VITE_FRANKFURTER_URL}/currencies`)
-      .then((response: AxiosResponse<Record<string, string>>) => {
-        setCurrencyOptions(
-          Object.entries(response.data).map(([key, value]: [string, string]) => ({ value: key, label: value })),
-        );
-      })
-      .catch((error: AxiosError) => {
-        console.error(error);
-
-        if (!error.isAxiosError) {
-          message.error('Ocorreu um erro interno ao buscar as moedas disponíveis');
-          return;
-        }
-
-        message.error('Ocorreu um erro desconhecido ao buscar as moedas disponíveis');
-      })
-      .finally(() => setOptionsLoading.setFalse());
   };
 
   const fetchConvertedValue = () => {
