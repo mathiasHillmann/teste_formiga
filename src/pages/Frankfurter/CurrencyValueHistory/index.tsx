@@ -136,13 +136,7 @@ export const CurrencyValueHistory: React.FC = () => {
                 label="Converter para"
                 rules={validationSchema.toCurrency}
               >
-                <Select
-                  mode="multiple"
-                  options={currencyOptions}
-                  showSearch={true}
-                  loading={optionsLoading}
-                  style={{ width: '15em' }}
-                />
+                <Select mode="multiple" options={currencyOptions} showSearch={true} loading={optionsLoading} />
               </Form.Item>
             </Form>
           </div>
