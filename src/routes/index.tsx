@@ -13,6 +13,8 @@ import { Brokers } from '../pages/BrasilAPI/Brokers';
 import { CurrencyConversion } from '../pages/Frankfurter/CurrencyConversion';
 import { CurrencyValueHistory } from '../pages/Frankfurter/CurrencyValueHistory';
 import { MyIp } from '../pages/MyIp';
+import { RuleOfThree } from '../pages/Calculators/RuleOfThree';
+import { HourlySalary } from '../pages/Calculators/HourlySalary';
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +25,19 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: 'calculadoras',
+        children: [
+          {
+            path: 'regra-de-tres',
+            element: <RuleOfThree />,
+          },
+          {
+            path: 'remuneracao-por-hora',
+            element: <HourlySalary />,
+          },
+        ],
       },
       {
         path: 'brasilapi',

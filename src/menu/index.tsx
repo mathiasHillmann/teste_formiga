@@ -1,5 +1,12 @@
 import { MenuDataItem } from '@ant-design/pro-components';
-import Icon, { HomeOutlined, ApiOutlined, CarOutlined, DollarOutlined, NodeIndexOutlined } from '@ant-design/icons';
+import Icon, {
+  HomeOutlined,
+  ApiOutlined,
+  CarOutlined,
+  DollarOutlined,
+  NodeIndexOutlined,
+  CalculatorOutlined,
+} from '@ant-design/icons';
 import { BrazilSVG, CatSVG } from '../assets/icons';
 
 export const menu: MenuDataItem[] = [
@@ -7,6 +14,21 @@ export const menu: MenuDataItem[] = [
     path: '/',
     name: 'Início',
     icon: <HomeOutlined />,
+  },
+  {
+    path: '/calculadoras',
+    name: 'Calculadoras',
+    icon: <CalculatorOutlined />,
+    children: [
+      {
+        path: 'regra-de-tres',
+        name: 'Regra de três',
+      },
+      {
+        path: 'remuneracao-por-hora',
+        name: 'Remuneração por hora',
+      },
+    ],
   },
   {
     path: '/brasilapi',
