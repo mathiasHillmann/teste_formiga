@@ -15,6 +15,8 @@ import { CurrencyValueHistory } from '../pages/Frankfurter/CurrencyValueHistory'
 import { MyIp } from '../pages/MyIp';
 import { RuleOfThree } from '../pages/Calculators/RuleOfThree';
 import { HourlySalary } from '../pages/Calculators/HourlySalary';
+import { SelectTest } from '../pages/Test/SelectTest';
+import { TableTest } from '../pages/Test/TableTest';
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,19 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: 'test',
+        children: [
+          {
+            path: 'select',
+            element: <SelectTest />,
+          },
+          {
+            path: 'table',
+            element: <TableTest />,
+          },
+        ],
       },
       {
         path: 'calculadoras',

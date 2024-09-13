@@ -1,0 +1,16 @@
+.filter {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+
+  .spacer {
+    flex: 1;
+  }
+
+  .actions {
+    display: flex;
+    gap: 1em;
+  }
+}

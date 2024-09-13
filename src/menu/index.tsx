@@ -6,6 +6,7 @@ import Icon, {
   DollarOutlined,
   NodeIndexOutlined,
   CalculatorOutlined,
+  ExperimentOutlined,
 } from '@ant-design/icons';
 import { BrazilSVG, CatSVG } from '../assets/icons';
 
@@ -14,6 +15,21 @@ export const menu: MenuDataItem[] = [
     path: '/',
     name: 'Início',
     icon: <HomeOutlined />,
+  },
+  {
+    path: '/test',
+    name: 'Testes',
+    icon: <ExperimentOutlined />,
+    children: [
+      {
+        path: 'table',
+        name: 'Tabela',
+      },
+      {
+        path: 'select',
+        name: 'Select',
+      },
+    ],
   },
   {
     path: '/calculadoras',
